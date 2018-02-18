@@ -85,10 +85,20 @@
       audio.play();
     }
 
+    function playSoundByTouch(e) {
+      // console.log(arguments.callee.toString().match(/function ([^\()]+)/)[1], e);
+      e.preventDefault();
+      // Find div.key node to extract the data-key attribute value
+      const keyNode = e.target.classList.contains('key') ? e.target : e.target.parentNode;
+      const keyCode = keyNode.attributes.item('data-key').value;
+      playSound(keyCode);
+    }
+
     const keys = Array.from(document.querySelectorAll('.key'));
     keys.forEach(key => {
       key.addEventListener('transitionend', removeTransition);
       key.addEventListener('click', playSoundByClick);
+      key.addEventListener('touchstart', playSoundByTouch);
     });
     window.addEventListener('keydown', playSoundByKey);
   </script>
