@@ -87,6 +87,7 @@
 
     function playSoundByTouch(e) {
       // console.log(arguments.callee.toString().match(/function ([^\()]+)/)[1], e);
+      e.stopPropagation();
       e.preventDefault();
       // Find div.key node to extract the data-key attribute value
       const keyNode = e.target.classList.contains('key') ? e.target : e.target.parentNode;
